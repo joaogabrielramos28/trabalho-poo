@@ -4,28 +4,28 @@ package hotelreservationsystem;
 
 public class Room {
 
-    private int roomNumber;
-    private String roomType;
+    private int number;
+    private String type;
     private boolean isAvailable;
 
-    public Room(int roomNumber, String roomType) throws Exception {
+    public Room(int number, String type) throws Exception {
     
-    if(roomType.equals("Single") == false && roomType.equals("Double") == false){
+    if(type.equals("Single") == false && type.equals("Double") == false){
       
         throw new Exception("Informe o tipo de quarto como Single ou Double");
     }
         this.isAvailable = true;
-        this.roomNumber = roomNumber;
-        this.roomType = roomType;
+        this.number = number;
+        this.type = type;
     }
     
     
-    public int getRoomNumber() {
-        return roomNumber;
+    public int getNumber() {
+        return this.number;
     }
 
-    public String getRoomType() {
-        return roomType;
+    public String getType() {
+        return this.type;
     }
 
 
@@ -48,8 +48,8 @@ public class Room {
     @Override
     public String toString() {
         return "Room{" +
-                "roomNumber=" + roomNumber +
-                ", roomType='" + roomType + '\'' +
+                "number=" + number +
+                ", roomType='" + type + '\'' +
                 ", isAvailable=" + isAvailable +
                 '}';
     }

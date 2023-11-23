@@ -1,6 +1,7 @@
 package hotelreservationsystem;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -9,11 +10,12 @@ public class Hotel {
 
     private String name;
     private Room[] rooms;
-    private Reservation[] reservations;
+    private ArrayList<Reservation> reservations;
 
     public Hotel(String name, int numberOfRooms) {
         this.name = name;
         this.rooms = new Room[numberOfRooms];
+        this.reservations = new ArrayList<>();
         try {
             initializeRooms();
         } catch (Exception ex) {
@@ -33,16 +35,25 @@ public class Hotel {
         System.out.println("Available Rooms at " + name + ":");
         for (Room room : rooms) {
             if (room.isAvailable()) {
-                System.out.println("Room Number: " + room.getRoomNumber() + " - Type: " + room.getRoomType());
+                System.out.println("Room Number: " + room.getNumber()+ " - Type: " + room.getType());
             }
+        }
+    }
+    
+    public void getReservation () {
+        System.out.println("Reservations at " + name + ":");
+        for (Reservation reservation : reservations) {
+             System.out.println("Reservation room: " + reservation.getRoom()+ " - checkInDate: " + reservation.getCheckInDate());
+            
         }
     }
 
     public Reservation bookRoom(int roomNumber, Date checkInDate, Date checkOutDate, String customer){
         for (Room room : rooms) {
-            if (room.getRoomNumber() == roomNumber && room.isAvailable()) {
+            if (room.getNumber() == roomNumber && room.isAvailable()) {
                 room.bookRoom();
                 Reservation reservation = new Reservation(checkInDate, checkOutDate, customer, room);
+               reservations.add(reservation);
                 return reservation;
             }
         }
@@ -51,6 +62,7 @@ public class Hotel {
         
         
     }
+    
     
     
     public void finishOrCancelReservation(Reservation reservation) {
