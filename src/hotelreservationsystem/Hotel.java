@@ -24,6 +24,10 @@ public class Hotel {
 
     }
 
+    public String getName() {
+        return name;
+    }
+
     private void initializeRooms() throws Exception {
         for (int i = 0; i < rooms.length; i++) {
             String roomType = i % 2 == 0 ? "Single" : "Double";
